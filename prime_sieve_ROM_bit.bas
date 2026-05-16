@@ -11,7 +11,7 @@
 30 FORF=3TOMFSTEP2
   40 IF(PEEK(S+FNV(F))ANDFNB(F))GOTO80
   50 J=F+F+F
-  60 IFJ<=NTHENA=S+FNV(J):POKEA,PEEK(A)ORFNB(J):J=J+F+F:GOTO60
+   REM Alternative implementation: 60 IFJ<=NTHENA=S+FNV(J):POKEA,PEEK(A)ORFNB(J):J=J+F+F:GOTO60
   60 IFJ>NGOTO80
   70 A=S+INT(J/16):POKEA,PEEK(A)ORB(JAND15):J=J+F+F:GOTO60
 80 NEXT
@@ -23,7 +23,7 @@
 120 RETURN
 
    REM Main body
-200 N=1000: REM INPUT"Find primes up to what number";N
+   REM Alternative implementation: 200 N=1000
 200 INPUT"Find primes up to what number";N
 210 GOSUB 8000
 
@@ -57,22 +57,29 @@
 620 END
 
      REM Define functions
-8000 DEF FNH(I)=INT(I/256):     REM Get the high byte
-8010 DEF FNL(I)=I-256*FNH(I):   REM Get the low  byte
-8020 DEF FNV(I)=INT(I/16):      REM Convert num bit to num bytes
+   REM Get the high byte
+8000 DEF FNH(I)=INT(I/256)
+   REM Get the low  byte
+8010 DEF FNL(I)=I-256*FNH(I)
+   REM Convert num bit to num bytes
+8020 DEF FNV(I)=INT(I/16)
    REM FNM() does modulus 16 remainder, optimized
 8030 IF N<65536 THEN  DEF FNM(I)=IAND15
 8040 IF N>=65536 THEN DEF FNM(I)=I-16*INT(I/16)
-8050 DEF FNB(I)=2^INT(FNM(I)/2):REM Mask bit, calculated
-8050 DEF FNB(I)=B(FNM(I)):      REM Mask bit, lookup (faster)
+   REM Alternative implementation: DEF FNB(I)=2^INT(FNM(I)/2)
+   REM Mask bit, lookup (faster)
+8050 DEF FNB(I)=B(FNM(I))
 8060 DIM B(15):DATA 1,2,4,8,16,32,64,128
 8070 FOR I=0 TO 15 STEP 2:READ J: B(I)=J: B(I+1)=J:NEXT
-8080 DEF FNN(F)=(F-24)*16 : REM Max N for F bytes free
+   REM Max N for F bytes free
+8080 DEF FNN(F)=(F-24)*16
 8090 RETURN
 
    REM Allocate (reserve) and init memory for the sieve array S
-8100 HW=PEEK(134)*256+PEEK(133): REM high water mark (top of RAM)
-8110 S=HW-FNV(N)-1: REM Starting address of the sieve
+   REM high water mark (top of RAM)
+8100 HW=PEEK(134)*256+PEEK(133)
+   REM Starting address of the sieve
+8110 S=HW-FNV(N)-1
 8120 POKE 133,FNL(S): POKE 134,FNH(S)
 8130 FORA=STOHW-1:POKEA,0:NEXT
 8140 RETURN

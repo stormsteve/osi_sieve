@@ -23,7 +23,7 @@
 120 RETURN
 
    REM Main body
-200 N=1000: REM INPUT"Find primes up to what number";N
+   REM Alternative implementation: 200 N=1000
 200 INPUT"Find primes up to what number";N
 210 GOSUB 8000
 
@@ -54,5 +54,6 @@
 620 END
 
      REM Define functions
-8000 DEF FNN(F)=INT(F/5)-6 : REM Max N for F bytes free
+     REM Max N for F bytes free
+8000 DEF FNN(F)=INT(F/5)-6
 8090 RETURN

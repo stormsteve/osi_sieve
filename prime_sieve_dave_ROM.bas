@@ -1,7 +1,7 @@
-5 REM OSI adaptation Copyright (C) 2026 Steve
-6 REM Based on a Dave Plummer prime sieve variant
-7 REM GPL-3.0-or-later. See the LICENSE file for details.
-10 REM Prime Calculator Sieve of Eratosthenes - Dave Plummer (ROM)
+REM OSI adaptation Copyright (C) 2026 Steve
+REM Based on a Dave Plummer prime sieve variant
+REM GPL-3.0-or-later. See the LICENSE file for details.
+REM Prime Calculator Sieve of Eratosthenes - Dave Plummer (ROM)
 20 N = 1000
 30 DIM A(N)
 40 NS = INT(SQR(N))

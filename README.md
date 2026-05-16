@@ -27,6 +27,16 @@ with `disk` in the name target OSI Disk BASIC. The sources use features such as
 Some files are experimental variants of the same prime-sieve idea, with tradeoffs
 between simplicity, memory use, and speed.
 
+The `prime_sieve_dave*.bas` files are OSI-oriented adaptations of a Dave
+Plummer prime sieve variant. The other files are project-native sieve variants
+for OSI ROM BASIC and OSI Disk BASIC.
+
+## Running
+
+Load the desired `.bas` file into an appropriate OSI BASIC environment, then
+run it. Most programs prompt for an upper bound `N`, run the sieve, and print
+the number of primes found along with a simple self-check for common inputs.
+
 ## Repository Hygiene
 
 Editor backup files and local Codex metadata are ignored through `.gitignore` so

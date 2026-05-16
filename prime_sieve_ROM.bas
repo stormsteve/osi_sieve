@@ -1,6 +1,8 @@
    REM Prime Sieve using a Full-Size Array
    REM We use an array where each entry represents
    REM an odd number
+   REM Copyright (C) 2026 Steve
+   REM GPL-3.0-or-later. See the LICENSE file for details.
 
 10 GOTO 200
 

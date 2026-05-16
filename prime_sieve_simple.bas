@@ -1,4 +1,6 @@
    REM Prime Sieve using optimized naive algorithm
+   REM Copyright (C) 2026 Steve
+   REM GPL-3.0-or-later. See the LICENSE file for details.
 
 10GOTO200
 

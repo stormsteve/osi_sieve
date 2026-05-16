@@ -1,6 +1,8 @@
    REM Prime Sieve using direct memory allocation and bit manipulation
    REM We move the high water mark back and directly access memory
    REM using 1 bit for each odd number. When done we reset the HWM
+   REM Copyright (C) 2026 Steve
+   REM GPL-3.0-or-later. See the LICENSE file for details.
 
 10 GOTO 200
 

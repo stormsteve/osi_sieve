@@ -1,6 +1,8 @@
    REM Prime Sieve using an Array of 15 bit values with timing
    REM We cannot use all 16 bits because the OR operator misbehaves
    REM with the 16th bit, even when using 2s compliment
+   REM Copyright (C) 2026 Steve
+   REM GPL-3.0-or-later. See the LICENSE file for details.
 
 10 GOTO 200
 

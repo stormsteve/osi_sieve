@@ -64,10 +64,10 @@
    REM Convert num bit to num bytes
 8000 DEF FNV(I)=INT(I/30)
    REM FNM() does modulus 30 remainder, optimized
-8010 DEF FNM(I)=I-30*INT(I/30)
+   REM 8010 DEF FNM(I)=I-30*INT(I/30)
    REM Alternative implementation: DEF FNB(I)=2^INT(FNM(I)/2)
    REM Mask bit, lookup (faster)
-8020 DEF FNB(I)=B(FNM(I))
+8020 DEF FNB(I)=B(I-30*INT(I/30))
 8040 DIM B(29)
 8050 DATA 1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384
 8060 FOR I=0 TO 29 STEP 2:READ J: B(I)=J: B(I+1)=J:NEXT

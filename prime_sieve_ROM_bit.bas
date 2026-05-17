@@ -62,16 +62,17 @@
    REM Convert num bit to num bytes
 8020 DEF FNV(I)=INT(I/16)
    REM FNM() does modulus 16 remainder, optimized
-8030 IF N<65536 THEN  DEF FNM(I)=IAND15
-8040 IF N>=65536 THEN DEF FNM(I)=I-16*INT(I/16)
+   REM 8030 IF N<65536 THEN  DEF FNM(I)=IAND15
+   REM 8040 IF N>=65536 THEN DEF FNM(I)=I-16*INT(I/16)
    REM Alternative implementation: DEF FNB(I)=2^INT(FNM(I)/2)
    REM Mask bit, lookup (faster)
-8050 DEF FNB(I)=B(FNM(I))
-8060 DIM B(15):DATA 1,2,4,8,16,32,64,128
-8070 FOR I=0 TO 15 STEP 2:READ J: B(I)=J: B(I+1)=J:NEXT
+8050 IF N<65536 THEN  DEF FNB(I)=B(IAND15)
+8060 IF N>=65536 THEN DEF FNB(I)=B(I-16*INT(I/16))
+8070 DIM B(15):DATA 1,2,4,8,16,32,64,128
+8080 FOR I=0 TO 15 STEP 2:READ J: B(I)=J: B(I+1)=J:NEXT
    REM Max N for F bytes free
-8080 DEF FNN(F)=(F-24)*16
-8090 RETURN
+8090 DEF FNN(F)=(F-24)*16
+8100 RETURN
 
    REM Allocate (reserve) and init memory for the sieve array S
    REM high water mark (top of RAM)

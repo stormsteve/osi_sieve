@@ -3,6 +3,8 @@
 Small collection of BASIC prime sieve programs and variants for Ohio
 Scientific (OSI) vintage computers.
 
+Author: Steve Gale
+
 ## License
 
 GPL-3.0-or-later. See [LICENSE](LICENSE).

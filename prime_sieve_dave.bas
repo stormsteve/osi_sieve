@@ -1,4 +1,4 @@
-REM OSI adaptation Copyright (C) 2026 Steve
+REM OSI adaptation Copyright (C) 2026 Steven M. Gale
 REM Based on a Dave Plummer prime sieve variant
 REM GPL-3.0-or-later. See the LICENSE file for details.
 REM Prime Calculator Using Sieve of Eratosthenes - Dave Plummer

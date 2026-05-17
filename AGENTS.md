@@ -30,6 +30,7 @@ Global guidance for coding agents and contributors.
 ## BASIC Conventions
 
 * Use line numbers in increments of 10
+* Keep BASIC source lines to 72 characters or fewer
 * Conserve memory by putting comments on unnumbered lines
 * In performance-critical code, place the hottest paths at the lowest line numbers
 * In performance-critical code, combine statements onto a line with `:`

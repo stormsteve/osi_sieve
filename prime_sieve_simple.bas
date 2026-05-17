@@ -16,7 +16,8 @@
 90RETURN
 
     REM Main body
-   REM Alternative implementation: 200INPUT"Find primes up to what number";N
+   REM Alternative implementation:
+   REM 200INPUT"Find primes up to what number";N
 200N=1000
 230IFN<2GOTO300
 240DIMR(N-1)

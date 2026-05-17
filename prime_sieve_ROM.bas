@@ -12,15 +12,13 @@
   40 IFS(F)GOTO80
   50 J=F+F+F
   60 IFJ<=NTHENS(J)=1:J=J+F+F:GOTO60
-80 NEXTF
-90 RETURN
+80 NEXTF:RETURN
 
 
 
    REM Count primes result in C
 100 C=1:FORF=3TONSTEP2:IFS(F)=0THENC=C+1
-110 NEXT
-120 RETURN
+110 NEXT:RETURN
 
    REM Main body
    REM Alternative implementation: 200 N=1000
@@ -49,9 +47,8 @@
 400 PRINT "Test FAILED"
 410 END
 
-600 PRINT "Invalid input ";N
-610 IF N>=2 THEN PRINT "Maximum ";FNN(F)
-620 END
+600 PRINT "Invalid input ";N:IF N>=2 THEN PRINT "Maximum ";FNN(F)
+610 END
 
      REM Define functions
      REM Max N for F bytes free

@@ -84,7 +84,8 @@
 850 IF T2>0 THEN PRINT "Run time";T2;"seconds"
 860 END
 
-870 PRINT "Test FAILED":END
+870 PRINT "Test FAILED"
+880 END
 
 900 PRINT "Invalid input ";N
 910 PRINT "Maximum 1000000":END

@@ -15,7 +15,7 @@
 80 NEXTF:RETURN
 
    REM Count primes in the current segment
-100 FORJ=LTOHSTEP2:IF(S%(FNV(J-L))ANDFNB(J-L))=0THENC=C+1
+100 FORI=0TOHI:IF(S%(FNS(I))ANDFNC(I))=0THENC=C+1
 110 NEXT:RETURN
 
    REM Clear the current segment
@@ -24,14 +24,14 @@
 
    REM Mark composites in the current segment
 160 FORF=3TORSTEP2
-170 IF(P%(FNV(F))ANDFNB(F))GOTO250
-180 J=F*F
-190 IFJ<LTHENJ=F*INT((L+F-1)/F)
-200 IFJ/2=INT(J/2)THENJ=J+F
-210 IFJ>HGOTO250
-220 D=J-L:S%(FNV(D))=S%(FNV(D))ORFNB(D)
-230 J=J+F+F
-240 GOTO210
+  170 IF(P%(FNV(F))ANDFNB(F))GOTO250
+  180 J=F*F
+  190 IFJ<LTHENJ=F*INT((L+F-1)/F)
+  200 IFJ/2=INT(J/2)THENJ=J+F
+  210 D=INT((J-L)/2)
+  220 IFD>HIGOTO250
+230 S%(FNS(D))=S%(FNS(D))ORFNC(D)
+  240 D=D+F:GOTO220
 250 NEXTF:RETURN
 
    REM Main body
@@ -52,8 +52,8 @@
 570 M=FNN(F)
 580 IF M<3 GOTO 920
 590 IF M>N THEN M=N
-600 DIM S%(FNV(M))
-   REM 610 PRINT "Base sieve";FNV(R)+1;"ints Segment";FNV(M)+1;"ints Span";M
+600 DIM S%(FNS(INT(M/2)))
+   REM 610 PRINT "Base";FNV(R)+1;" Seg";FNS(INT(M/2))+1;" M";M
 
    REM Remember starting time on C3 timeshare and 65D HC O/S
 620 T1=FNT(55919):T2=FNT(9480)
@@ -63,7 +63,7 @@
 640 IF L>N GOTO 770
 650 H=L+M-1:IF H>N THEN H=N
 660 IF H/2=INT(H/2) THEN H=H-1
-670 SV=FNV(H-L)
+670 HI=INT((H-L)/2)
 680 GOSUB 130
 690 GOSUB 160
 700 GOSUB 100
@@ -87,25 +87,32 @@
 870 PRINT "Test FAILED"
 880 END
 
-900 PRINT "Invalid input ";N
-910 PRINT "Maximum 1000000":END
+900 PRINT "Invalid input ";N:IF N>=2 THEN PRINT "Maximum 1000000"
+910 END
 
-920 PRINT "Not enough free memory for a segment":END
+920 PRINT "Not enough free memory for a segment"
+930 END
 
      REM Define functions
      REM We can only use 15 bits because of a BASIC bug with OR
    REM Convert num bit to num bytes
 8000 DEF FNV(I)=INT(I/30)
    REM FNM() does modulus 30 remainder, optimized
-8010 DEF FNM(I)=I-30*INT(I/30)
+   REM 8010 DEF FNM(I)=I-30*INT(I/30)
    REM Alternative implementation: DEF FNB(I)=2^INT(FNM(I)/2)
-   REM Mask bit, lookup (faster)
-8020 DEF FNB(I)=B(FNM(I))
-8040 DIM B(29)
-8050 DATA 1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384
-8060 FOR I=0 TO 29 STEP 2:READ J:B(I)=J:B(I+1)=J:NEXT
+   REM Base sieve mask, lookup (faster)
+8020 DEF FNB(I)=B(I-30*INT(I/30))
+   REM Convert odd index to int index
+8030 DEF FNS(I)=INT(I/15)
+   REM Odd index modulus 15, optimized
+   REM 8040 DEF FNR(I)=I-15*INT(I/15)
+   REM Segment mask, lookup (faster)
+8050 DEF FNC(I)=C(I-15*INT(I/15))
+8060 DIM B(29),C(14)
+8070 DATA 1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384
+8080 FOR I=0 TO 14:READ J:C(I)=J:B(I+I)=J:B(I+I+1)=J:NEXT
    REM time in secs
-8070 DEF FNT(I)=PEEK(I)*3600+PEEK(I+1)*60+PEEK(I+2)
+8090 DEF FNT(I)=PEEK(I)*3600+PEEK(I+1)*60+PEEK(I+2)
    REM Max N for F bytes free
-8080 DEF FNN(F)=(F-34)*15
-8090 RETURN
+8100 DEF FNN(F)=(F-34)*15
+8110 RETURN

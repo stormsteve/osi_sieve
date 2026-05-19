@@ -3,6 +3,8 @@
 Small collection of BASIC prime sieve programs and variants for Ohio
 Scientific (OSI) vintage computers.
 
+Inspired by Dave Plummer's Primes drag-race (https://github.com/PlummersSoftwareLLC/Primes/tree/drag-race)
+
 Author: Steve Gale
 
 ## License

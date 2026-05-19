@@ -50,7 +50,3 @@ the number of primes found along with a simple self-check for common inputs.
 Manual check for `prime_sieve_segmented_disk_bit.bas`: enter `1000000` and
 expect `Found 78498 primes` followed by `Test PASSED`.
 
-## Repository Hygiene
-
-Editor backup files and local Codex metadata are ignored through `.gitignore` so
-the repository stays clean when shared on GitHub.

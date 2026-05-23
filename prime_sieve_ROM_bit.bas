@@ -31,7 +31,7 @@
 230 IF FNN(F)<N OR N<2 GOTO 600
 
    REM Allocate memory
-250 GOSUB 8100
+250 GOSUB 8200
 
    REM Run the sieve
 260 GOSUB 20
@@ -40,7 +40,7 @@
 280 GOSUB 100
 
    REM Release memory
-290 GOSUB 8200
+290 GOSUB 8300
 
 300 PRINT "Found"; C; "primes"
 310 IF (N=10 AND C<>4)OR(N=100 AND C<>25)OR(N=1000 AND C<>168) GOTO400
@@ -76,11 +76,11 @@
 
    REM Allocate (reserve) and init memory for the sieve array S
    REM high water mark (top of RAM)
-8100 HW=PEEK(134)*256+PEEK(133)
+8200 HW=PEEK(134)*256+PEEK(133)
    REM Starting address of the sieve
-8110 S=HW-FNV(N)-1
-8120 POKE 133,FNL(S): POKE 134,FNH(S)
-8130 FORA=STOHW-1:POKEA,0:NEXT:RETURN
+8210 S=HW-FNV(N)-1
+8220 POKE 133,FNL(S): POKE 134,FNH(S)
+8230 FORA=STOHW-1:POKEA,0:NEXT:RETURN
 
    REM free allocated memory
-8200 POKE 134,FNH(HW):POKE 133,FNL(HW):RETURN
+8300 POKE 134,FNH(HW):POKE 133,FNL(HW):RETURN

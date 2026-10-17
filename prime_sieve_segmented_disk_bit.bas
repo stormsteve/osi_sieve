@@ -52,7 +52,7 @@
 570 M=FNN(F)
 580 IF M<3 GOTO 920
 590 IF M>N THEN M=N
-600 DIM S%(FNS(INT(M/2)))
+600 SV=FNS(INT(M/2)):DIM S%(SV)
    REM 610 PRINT "Base";FNV(R)+1;" Seg";FNS(INT(M/2))+1;" M";M
 
    REM Remember starting time on C3 timeshare and 65D HC O/S

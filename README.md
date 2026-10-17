@@ -76,6 +76,7 @@ Use these expected counts when manually testing or comparing variants:
 
 | N | Expected primes |
 | --- | --- |
+| 2 | 1 |
 | 10 | 4 |
 | 100 | 25 |
 | 1000 | 168 |
@@ -86,3 +87,15 @@ Use these expected counts when manually testing or comparing variants:
 Programs with built-in self-checks already verify some or all of these values.
 For `prime_sieve_segmented_disk_bit.bas`, enter `1000000` and expect
 `Found 78498 primes` followed by `Test PASSED`.
+
+For each of `prime_sieve_ROM.bas`, `prime_sieve_disk.bas`,
+`prime_sieve_ROM_bit.bas`, and `prime_sieve_disk_bit.bas`, run with `N=2`
+and expect `Found 1 primes` without an array bounds error. Also check `N=3`
+and `N=8`, expecting 2 and 4 primes respectively, then run with `N=10`
+to exercise composite marking and expect 4 primes.
+
+To check segment clearing without a long run, temporarily replace line 590
+in `prime_sieve_segmented_disk_bit.bas` with `590 M=100`, then run with
+`N=1000`. Expect `Found 168 primes` followed by `Test PASSED`. This forces
+multiple segments with multiple array entries to be cleared. Restore the
+original line 590 after the check.

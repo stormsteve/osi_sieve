@@ -25,7 +25,7 @@
    REM Main body
    REM Alternative implementation: 200 N=1000
 200 INPUT"Find primes up to what number";N
-210 GOSUB 8000
+210 GOSUB 8000:HW=0:S=0:MF=0:A=0:C=0
 
    REM Make sure we don't overflow memory and N is valid
 220 F=FRE(8):IF F<0 THEN F=65536+F

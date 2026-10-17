@@ -101,6 +101,15 @@ should finish without an illegal-quantity error in marking or counting.
 Compare the counts directly: only `100000` has a built-in self-check
 among these inputs.
 
+To check bitmap allocation near the memory limit in OSI ROM BASIC, set
+`MEMORY SIZE` to `8146` and run `prime_sieve_ROM_bit.bas` with `N=98608`.
+Expect `Found 9467 primes` and `Test PASSED`; `N=98609` should be rejected
+with the reported maximum of `98608`.
+
+For the square-root boundary, run `prime_sieve_ROM_bit.bas` with `N=26568`,
+`26569`, and `26570`. Each input should report 2915 primes. Compare the
+counts directly because only common inputs have built-in self-checks.
+
 To check segment clearing without a long run, temporarily replace line 590
 in `prime_sieve_segmented_disk_bit.bas` with `590 M=100`, then run with
 `N=1000`. Expect `Found 168 primes` followed by `Test PASSED`. This forces

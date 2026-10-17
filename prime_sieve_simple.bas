@@ -7,7 +7,7 @@
   REM Compute the primes brute force except multiples of 2.
   REM  2 and 3 are assumed prime
 20FORI=5TONSTEP2
-  30SQ=INT(SQR(I))
+  30SQ=INT(SQR(I))+1
   40FORJ=3TOSQSTEP2
     50IFI/J=INT(I/J)GOTO80
   60NEXTJ

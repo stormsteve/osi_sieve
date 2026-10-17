@@ -4,7 +4,7 @@ REM GPL-3.0-or-later. See the LICENSE file for details.
 REM Prime Calculator Using Sieve of Eratosthenes - Dave Plummer
 20 DIM A%(1000)
 30 N = 1000
-40 NSQ% = INT(SQR(N))
+40 NSQ% = INT(SQR(N))+1
 50 FOR I = 2 TO N
 60     A%(I) = 1
 70 NEXT I

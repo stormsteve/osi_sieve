@@ -110,6 +110,18 @@ For the square-root boundary, run `prime_sieve_ROM_bit.bas` with `N=26568`,
 `26569`, and `26570`. Each input should report 2915 primes. Compare the
 counts directly because only common inputs have built-in self-checks.
 
+If BREAK stops `prime_sieve_ROM_bit.bas`, its direct-memory bitmap may still
+be reserved. At the BASIC prompt, before entering `RUN`, restore the saved
+high-water mark with:
+
+```basic
+POKE 134,FNH(HW):POKE 133,FNL(HW)
+```
+
+The program's variables and helper functions remain available after BREAK.
+If they have been cleared or the command cannot be entered, reset the
+computer before running the program again.
+
 To check segment clearing without a long run, temporarily replace line 590
 in `prime_sieve_segmented_disk_bit.bas` with `590 M=100`, then run with
 `N=1000`. Expect `Found 168 primes` followed by `Test PASSED`. This forces

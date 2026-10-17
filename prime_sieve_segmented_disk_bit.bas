@@ -45,7 +45,8 @@
    REM Allocate the small base sieve first
 530 R=SQR(N)
 540 DIM P%(FNV(R))
-550 GOSUB 20
+   REM Create working scalars before measuring free memory
+550 GOSUB 20:M=0:SV=0:T1=0:T2=0:C=0:L=0:H=0:HI=0:D=0
 
    REM Use the remaining free memory for the working segment
 560 F=FRE(8):IF F<0 THEN F=65536+F
@@ -114,5 +115,6 @@
    REM time in secs
 8090 DEF FNT(I)=PEEK(I)*3600+PEEK(I+1)*60+PEEK(I+2)
    REM Max N for F bytes free
+   REM Reserve 34 bytes for array overhead and spare space
 8100 DEF FNN(F)=(F-34)*15
 8110 RETURN

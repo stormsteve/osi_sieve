@@ -99,3 +99,10 @@ in `prime_sieve_segmented_disk_bit.bas` with `590 M=100`, then run with
 `N=1000`. Expect `Found 168 primes` followed by `Test PASSED`. This forces
 multiple segments with multiple array entries to be cleared. Restore the
 original line 590 after the check.
+
+To check segment allocation near the memory limit, use the original line
+590 and enable the diagnostic PRINT at line 610. Run with `N=100000` and
+set the BASIC memory limit low enough that the printed `M` is less than
+100000, while still allowing the program and base sieve to load. Expect
+`Found 9592 primes` and `Test PASSED`, without an out-of-memory error during
+allocation or processing. Disable the diagnostic PRINT after the check.

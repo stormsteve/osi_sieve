@@ -14,7 +14,7 @@
    REM Alternative implementation:
    REM 60 IFJ<=NTHENA=S+FNV(J):POKEA,PEEK(A)ORFNB(J):J=J+F+F:GOTO60
   60 IFJ>NGOTO80
-  70 A=S+INT(J/16):POKEA,PEEK(A)ORB(JAND15):J=J+F+F:GOTO60
+  70 A=S+INT(J/16):POKEA,PEEK(A)ORFNB(J):J=J+F+F:GOTO60
 80 NEXT:RETURN
 
    REM Count primes result in C
@@ -63,12 +63,13 @@
    REM Convert num bit to num bytes
 8020 DEF FNV(I)=INT(I/16)
    REM FNM() does modulus 16 remainder, optimized
-   REM 8030 IF N<65536 THEN  DEF FNM(I)=IAND15
-   REM 8040 IF N>=65536 THEN DEF FNM(I)=I-16*INT(I/16)
+   REM 8030 IF N<32768 THEN  DEF FNM(I)=IAND15
+   REM 8040 IF N>=32768 THEN DEF FNM(I)=I-16*INT(I/16)
    REM Alternative implementation: DEF FNB(I)=2^INT(FNM(I)/2)
+   REM AND operands must fit signed 16-bit integers
    REM Mask bit, lookup (faster)
-8050 IF N<65536 THEN  DEF FNB(I)=B(IAND15)
-8060 IF N>=65536 THEN DEF FNB(I)=B(I-16*INT(I/16))
+8050 IF N<32768 THEN  DEF FNB(I)=B(IAND15)
+8060 IF N>=32768 THEN DEF FNB(I)=B(I-16*INT(I/16))
 8070 DIM B(15):DATA 1,2,4,8,16,32,64,128
 8080 FOR I=0 TO 15 STEP 2:READ J: B(I)=J: B(I+1)=J:NEXT
    REM Max N for F bytes free

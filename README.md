@@ -94,6 +94,13 @@ and expect `Found 1 primes` without an array bounds error. Also check `N=3`
 and `N=8`, expecting 2 and 4 primes respectively, then run with `N=10`
 to exercise composite marking and expect 4 primes.
 
+For `prime_sieve_ROM_bit.bas`, check `N=32767`, `32768`, and `32769`;
+each should find 3512 primes. Then check `N=40000` (4203 primes) and
+`N=100000` (9592 primes), with enough RAM for the bitmap. These runs
+should finish without an illegal-quantity error in marking or counting.
+Compare the counts directly: only `100000` has a built-in self-check
+among these inputs.
+
 To check segment clearing without a long run, temporarily replace line 590
 in `prime_sieve_segmented_disk_bit.bas` with `590 M=100`, then run with
 `N=1000`. Expect `Found 168 primes` followed by `Test PASSED`. This forces

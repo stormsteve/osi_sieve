@@ -47,17 +47,22 @@ The `prime_sieve_dave*.bas` files are OSI-oriented adaptations of Dave
 Plummer's [Primes drag-race](https://github.com/PlummersSoftwareLLC/Primes/tree/drag-race)
 reference. The remaining variants are project implementations for OSI BASIC.
 
-## Design notes
+## Design progression
 
-- Odd-only variants skip even numbers, reducing the sieve state.
-- Bit-packed variants store multiple composite flags in each integer or byte.
-  Disk BASIC variants use 15 bits per integer to avoid a BASIC bitwise
-  operation issue with the sign bit.
-- The ROM bit-packed variant reserves memory directly with `PEEK` and `POKE`.
-  The testing guide includes recovery steps if `BREAK` interrupts a run.
-- The segmented variant reuses a bounded working array while processing
-  successive ranges. It supports bounds up to 1,000,000, though runs at that
-  scale can take a long time on an emulator.
+`prime_sieve_simple.bas` provides a small trial-division baseline, while the
+Dave adaptations provide full-array sieve references. The project variants
+then reduce the sieve's memory use in stages: they skip even numbers, pack
+composite flags into bits, and, for Disk BASIC, process the range in segments.
+
+The Disk BASIC bit-packed variants store 15 flags per integer. OSI BASIC's
+bitwise `OR` mishandles the 16th, sign bit, so leaving that bit unused avoids
+the bug. The ROM bit-packed variant instead stores eight flags per byte in
+directly reserved memory using `PEEK` and `POKE`. Its memory recovery procedure
+is documented in the [testing guide](TESTING.md).
+
+The segmented variant reuses a bounded working array while processing
+successive ranges. It supports bounds up to 1,000,000, though runs at that
+scale can take a long time on an emulator.
 
 Runtime output differs between programs. Timing is printed only by variants
 that can read a usable clock from the target system.

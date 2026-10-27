@@ -74,8 +74,14 @@ segments with multiple array entries to be cleared. Restore the original line
 590 after the check.
 
 To check segment allocation near the memory limit, use the original line 590
-and enable the diagnostic `PRINT` at line 610. Run with `N=100000` and set the
-BASIC memory limit low enough that the printed `M` is less than 100000, while
-still allowing the program and base sieve to load. Expect `Found 9592 primes`
-and `Test PASSED`, without an out-of-memory error during allocation or
-processing. Disable the diagnostic `PRINT` after the check.
+and temporarily replace line 600 with:
+
+```basic
+600 SV=FNS(INT(M/2)):PRINT "F";F;" M";M;" SV";SV:DIM S%(SV)
+```
+
+Run with `N=100000` and set the BASIC memory limit low enough that `M` is less
+than 100000, while still allowing the program and base sieve to load. The
+diagnostic prints the free bytes and segment-array bound before allocation.
+Expect `Found 9592 primes` and `Test PASSED`, without an out-of-memory error.
+Restore line 600 after the check.

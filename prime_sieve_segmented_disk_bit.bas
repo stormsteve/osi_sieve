@@ -120,6 +120,6 @@
    REM time in secs
 8090 DEF FNT(I)=PEEK(I)*3600+PEEK(I+1)*60+PEEK(I+2)
    REM Max N for F bytes free
-   REM Reserve 34 bytes for array overhead and spare space
-8100 DEF FNN(F)=(F-34)*15
+   REM Reserve 34 bytes plus integer-array rounding space
+8100 DEF FNN(F)=(F-36)*15
 8110 RETURN

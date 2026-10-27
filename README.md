@@ -78,10 +78,11 @@ The source includes self-checks for selected common inputs. Detailed expected
 counts, boundary cases, and memory-limit procedures are in
 [TESTING.md](TESTING.md).
 
-One observed run of the segmented Disk BASIC program took about 10 seconds for
-`N=1000` on a 4× emulator. This is a single observation, not a controlled
-benchmark or a comparison between variants; emulator and machine details can
-change the result substantially.
+A completed run of `prime_sieve_segmented_disk_bit.bas` under OS-65D RT, with
+the emulator CPU set to 470% of its original speed, found 78,498 primes for
+`N=1,000,000` in 12,063 seconds (3 hours, 21 minutes, 3 seconds). This is one
+configuration-specific run, not a cross-variant benchmark; results can vary
+with the emulator and memory configuration.
 
 ## License
 

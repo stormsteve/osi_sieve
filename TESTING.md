@@ -16,6 +16,13 @@ Programs with built-in self-checks verify only selected inputs. An unchecked
 input reports `No built-in check`; compare its result with the table or another
 trusted prime-counting implementation.
 
+## Reference implementations
+
+Run `prime_sieve_simple.bas`, `prime_sieve_dave.bas`, and
+`prime_sieve_dave_ROM.bas` with their source default `N=1000`. Each should
+report 168 primes. These programs are retained as reference implementations;
+the boundary checks below focus on the optimized variants.
+
 ## Basic boundaries
 
 For each of `prime_sieve_ROM.bas`, `prime_sieve_disk.bas`,
@@ -41,7 +48,9 @@ Expect `Found 9467 primes` and `Test PASSED`; `N=98609` should be rejected
 with the reported maximum of `98608`.
 
 For the square-root boundary, run `prime_sieve_ROM_bit.bas` with `N=26568`,
-`26569`, and `26570`. Each input should report 2915 primes. Compare the
+`26569`, and `26570`. Each input should report 2915 primes. `26569` is
+`163^2`; this case checks that a slightly low floating-point `SQR` result does
+not make the sieve stop before using 163 to mark its square. Compare the
 counts directly because only common inputs have built-in self-checks.
 
 If `BREAK` stops `prime_sieve_ROM_bit.bas`, its direct-memory bitmap may still

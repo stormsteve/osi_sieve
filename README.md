@@ -34,9 +34,9 @@ interpreters.
 
 | Program | Target | Technique | Purpose |
 | --- | --- | --- | --- |
-| `prime_sieve_simple.bas` | Generic OSI BASIC | Trial division | Small, readable baseline |
-| `prime_sieve_dave.bas` | OSI Disk BASIC | Full sieve over integers | Reference adaptation |
-| `prime_sieve_dave_ROM.bas` | OSI ROM BASIC | Full sieve over integers | ROM reference adaptation |
+| `prime_sieve_simple.bas` | Generic OSI BASIC | Trial division | Readable reference baseline |
+| `prime_sieve_dave.bas` | OSI Disk BASIC | Full sieve over integers | Dave reference adaptation |
+| `prime_sieve_dave_ROM.bas` | OSI ROM BASIC | Full sieve over integers | ROM adaptation of Dave reference |
 | `prime_sieve_ROM.bas` | OSI ROM BASIC | Odd-only array sieve | Straightforward optimized variant |
 | `prime_sieve_ROM_bit.bas` | OSI ROM BASIC | Direct-memory bit-packed odd sieve | Reduce memory use without an array |
 | `prime_sieve_disk.bas` | OSI Disk BASIC | Odd-only integer-array sieve | Straightforward optimized variant |
@@ -49,16 +49,21 @@ reference. The remaining variants are project implementations for OSI BASIC.
 
 ## Design progression
 
-`prime_sieve_simple.bas` provides a small trial-division baseline, while the
-Dave adaptations provide full-array sieve references. The project variants
-then reduce the sieve's memory use in stages: they skip even numbers, pack
-composite flags into bits, and, for Disk BASIC, process the range in segments.
+`prime_sieve_simple.bas` and the Dave adaptations are retained as reference
+implementations. The optimized project variants then reduce the sieve's memory
+use in stages: they skip even numbers, pack composite flags into bits, and,
+for Disk BASIC, process the range in segments.
 
 The Disk BASIC bit-packed variants store 15 flags per integer. OSI BASIC's
 bitwise `OR` mishandles the 16th, sign bit, so leaving that bit unused avoids
 the bug. The ROM bit-packed variant instead stores eight flags per byte in
 directly reserved memory using `PEEK` and `POKE`. Its memory recovery procedure
 is documented in the [testing guide](TESTING.md).
+
+The optimized sieves add 1 to `INT(SQR(x))` because BASIC's `SQR` can round
+slightly below an exact square root. At `N=163^2`, for example,
+`INT(SQR(N))` could be 162. The sieve would then omit 163 as a marking factor
+and leave 163 squared unmarked.
 
 The segmented variant reuses a bounded working array while processing
 successive ranges. It supports bounds up to 1,000,000, though runs at that

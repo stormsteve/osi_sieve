@@ -8,6 +8,7 @@
 
    REM Run the sieve over S%
 20 IFN<9THENRETURN
+   REM Add 1 because SQR may round down near exact squares.
 30 MF=INT(SQR(N))+1
 35 FORF=3TOMFSTEP2
   40 IF(S%(FNV(F))ANDFNB(F))GOTO80

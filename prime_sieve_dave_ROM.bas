@@ -4,7 +4,7 @@ REM GPL-3.0-or-later. See the LICENSE file for details.
 REM Prime Calculator Sieve of Eratosthenes - Dave Plummer (ROM)
 20 N = 1000
 30 DIM A(N)
-40 NS = INT(SQR(N))+1
+40 NS = INT(SQR(N))
 50 FOR I=2 TO N:A(I)=1:NEXT
 80 FOR I=2 TO NS
 90   IF A(I)=0 GOTO 130

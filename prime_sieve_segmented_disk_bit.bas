@@ -7,6 +7,7 @@
 10 GOTO 500
 
    REM Run the base sieve over P%
+   REM Add 1 because SQR may round down near exact squares.
 20 MF=INT(SQR(R))+1
 30 FORF=3TOMFSTEP2
   40 IF(P%(FNV(F))ANDFNB(F))GOTO80
@@ -43,6 +44,7 @@
 520 IF N<2 OR N>1000000 GOTO 900
 
    REM Allocate the small base sieve first
+   REM Add 1 because SQR may round down near exact squares.
 530 R=INT(SQR(N))+1
 540 DIM P%(FNV(R))
    REM Create working scalars before measuring free memory
